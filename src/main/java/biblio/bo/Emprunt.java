@@ -1,3 +1,5 @@
+package biblio.bo;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,15 +9,15 @@ import java.util.List;
 public class Emprunt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; // [cite: 123]
+    private Integer id; //
 
     @Column(name = "DATE_DEBUT")
-    private LocalDateTime dateDebut; // [cite: 123]
+    private LocalDateTime dateDebut; //
 
     @Column(name = "DATE_FIN")
     private LocalDateTime dateFin; // Peut être NULL [cite: 125]
 
-    private Integer delai; // [cite: 123]
+    private Integer delai; //
 
     @ManyToOne
     @JoinColumn(name = "ID_CLIENT") // Clé étrangère vers CLIENT 
@@ -25,7 +27,7 @@ public class Emprunt {
     @JoinTable(name = "COMPO",
             joinColumns = @JoinColumn(name = "ID_EMP", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ID_LIV", referencedColumnName = "ID")
-    ) // Table d'association entre LIVRE et EMPRUNT [cite: 127, 128, 185]
+    ) // Table d'association entre LIVRE et EMPRUNT
     private List<Livre> livres;
 
     public Emprunt() {}

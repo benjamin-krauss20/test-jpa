@@ -1,3 +1,5 @@
+package biblio.bo;
+
 import jakarta.persistence.*;
 @Entity
 @Table(name = "produits")
@@ -8,7 +10,7 @@ public class Produit {
     private String nom;
     private double prix;
 
-    public Produit() {} // Obligatoire [cite: 80]
+    public Produit() {} // Obligatoire
 
     public Produit(String nom, double prix) {
         this.nom = nom;

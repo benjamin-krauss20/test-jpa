@@ -1,3 +1,5 @@
+package biblio.bo;
+
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -6,10 +8,10 @@ import java.util.List;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; // [cite: 122]
+    private Integer id; //
 
-    private String nom; // [cite: 122]
-    private String prenom; // [cite: 122]
+    private String nom; //
+    private String prenom; //
 
     @OneToMany(mappedBy = "client") // Un client a plusieurs emprunts [cite: 185]
     private List<Emprunt> emprunts;

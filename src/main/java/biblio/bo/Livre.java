@@ -1,3 +1,5 @@
+package biblio.bo;
+
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -6,10 +8,10 @@ import java.util.List;
 public class Livre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; // [cite: 121]
+    private Integer id; //
 
-    private String titre; // [cite: 121]
-    private String auteur; // [cite: 121]
+    private String titre; //
+    private String auteur; //
 
     @ManyToMany(mappedBy = "livres") // Relation inverse [cite: 185]
     private List<Emprunt> emprunts;

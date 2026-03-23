@@ -1,3 +1,4 @@
+import biblio.bo.Produit;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -21,7 +22,7 @@ public class TestJpa {
             em.persist(p); // Enregistrement
 
             em.getTransaction().commit(); // Validation
-            System.out.println("Produit ajouté avec succès, ID : " + p.getId());
+            System.out.println("biblio.bo.Produit ajouté avec succès, ID : " + p.getId());
 
         } catch (Exception e) {
             if (em.getTransaction().isActive()) em.getTransaction().rollback();
