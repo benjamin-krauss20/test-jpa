@@ -34,6 +34,48 @@ public class TestBanque {
             monLivret.setTaux(2.5);
             em.persist(monLivret);
 
+            // 1. Création du compte commun
+            LivretA livretCommun = new LivretA();
+            livretCommun.setNumero("JOINT-001");
+            livretCommun.setSolde(10000.0);
+            livretCommun.setTaux(3.0);
+            em.persist(livretCommun); // On persiste le compte d'abord
+
+// 2. Création des deux titulaires
+            Client monsieur = new Client();
+            monsieur.setNom("Dupont");
+            monsieur.setPrenom("Jean");
+            monsieur.setBanque(maBanque);
+            monsieur.getComptes().add(livretCommun); // On lie le compte au client 1
+
+            Client madame = new Client();
+            madame.setNom("Dupont");
+            madame.setPrenom("Marie");
+            madame.setBanque(maBanque);
+            madame.getComptes().add(livretCommun); // On lie le MÊME compte au client 2
+
+            em.persist(monsieur);
+            em.persist(madame);
+
+            // 3. Création d'une Assurance Vie
+            AssuranceVie av = new AssuranceVie();
+            av.setNumero("AV-999");
+            av.setSolde(500.0);
+            av.setTaux(2.0);
+            av.setDateFin(LocalDate.of(2040, 1, 1));
+            em.persist(av);
+// 4. Création d'un virement
+            Virement virement = new Virement();
+            virement.setDate(LocalDateTime.now());
+            virement.setMontant(200.0);
+            virement.setMotif("Cadeau anniversaire");
+            virement.setBeneficiaire("Benjamin");
+            virement.setCompte(livretCommun); // On lie l'opération au livret commun
+
+            em.persist(virement);
+// Liaison avec le client existant
+            monsieur.getComptes().add(av);
+
             tx.commit();
             System.out.println("Données bancaires insérées !");
 

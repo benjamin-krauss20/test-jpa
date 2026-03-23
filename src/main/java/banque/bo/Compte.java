@@ -1,6 +1,7 @@
 package banque.bo;
 
 import jakarta.persistence.*;
+import java.util.ArrayList; // Import manquant
 import java.util.List;
 
 @Entity
@@ -11,15 +12,21 @@ public abstract class Compte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String numero; // [cite: 11]
-    private double solde; // [cite: 11]
+    private String numero;
+    private double solde;
 
     @ManyToMany(mappedBy = "comptes")
-    private List<Client> clients;
+    private List<Client> clients = new ArrayList<>();
+
+    @OneToMany(mappedBy = "compte")
+    private List<Operation> operations = new ArrayList<>();
 
     public Compte() {}
 
     // Getters et Setters
     public void setNumero(String numero) { this.numero = numero; }
+    public String getNumero() { return numero; }
     public void setSolde(double solde) { this.solde = solde; }
+    public double getSolde() { return solde; }
+    public List<Client> getClients() { return clients; }
 }
